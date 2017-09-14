@@ -29,16 +29,17 @@ public class RegexExample {
         Pattern pattern = Pattern.compile("(\\w+)(\\s+)(\\w+)(\\s+)(\\w+)(\\s+)(\\w+)([!.,]+)(\\w+)");
         Matcher matcher = pattern.matcher(input);
 
-        for (int i = 1; i < matcher.groupCount() + 1; i++){
-            if (matcher.group(i).matches("\\w+")){
-                for (int j = matcher.group(i).length()-1 ; j >= 0; j--){
-                    output = output + matcher.group(i).charAt(j);
+        if (matcher.matches()) {
+            for (int i = 1; i < matcher.groupCount() + 1; i++) {
+                if (matcher.group(i).matches("\\w+")) {
+                    for (int j = matcher.group(i).length() - 1; j >= 0; j--) {
+                        output = output + matcher.group(i).charAt(j);
+                    }
+                } else {
+                    output = output + matcher.group(i);
                 }
-            } else {
-                output = output + matcher.group(i);
             }
         }
-
         return output;
     }
 
